@@ -1,27 +1,56 @@
->>> say_my_name = __import__('3-say_my_name').say_my_name
+The ``3-say_my_name`` module
+============================
 
->>> say_my_name()
-Traceback (most recent call last):
-TypeError: say_my_name() missing 1 required positional argument: 'first_name'
+Using ``3-say_my_name``
+---------------------
 
->>> say_my_name("A", "B", "C")
-Traceback (most recent call last):
-TypeError: say_my_name() takes from 1 to 2 positional arguments but 3 were given
+Import module:
+    >>> say_my_name = __import__('3-say_my_name').say_my_name
 
->>> say_my_name(42)
-Traceback (most recent call last):
-TypeError: first_name must be a string
+Test basic:
+	>>> say_my_name("hello", "there")
+	My name is hello there
 
->>> say_my_name(42, "Hamilton")
-Traceback (most recent call last):
-TypeError: first_name must be a string
+Test firstname:
+	>>> say_my_name("hello")
+	My name is hello 
 
->>> say_my_name("Alex", 42)
-Traceback (most recent call last):
-TypeError: last_name must be a string
+Test lastname empty:
+	>>> say_my_name("hello", "")
+	My name is hello 
 
->>> say_my_name("Alex", "Hamilton")
-My name is Alex Hamilton
+Test both names empty:
+	>>> say_my_name("", "")
+	My name is  
 
->>> say_my_name("Alex")
-My name is Alex 
+Test just spaces:
+	>>> say_my_name("   ", "   ")
+	My name is        
+
+Test empty firstname:
+	>>> say_my_name("", "hello")
+	My name is  hello
+
+Test not str arg1:
+    >>> say_my_name(33, "hello")
+    Traceback (most recent call last):
+    ...
+    TypeError: first_name must be a string
+
+Test not str arg2:
+    >>> say_my_name("hello", 98)
+    Traceback (most recent call last):
+    ...
+    TypeError: last_name must be a string
+
+Test not str arg1 arg2:
+    >>> say_my_name(91, 98)
+    Traceback (most recent call last):
+    ...
+    TypeError: first_name must be a string
+
+Missing 2 args:
+    >>> say_my_name()
+    Traceback (most recent call last):
+    ...
+    TypeError: say_my_name() missing 1 required positional argument: 'first_name' 
